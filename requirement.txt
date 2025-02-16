@@ -1,0 +1,40 @@
+# Core dependencies
+streamlit>=1.32.0
+anthropic>=0.18.0
+pandas>=2.2.0
+numpy>=1.26.0
+
+# API and HTTP
+requests>=2.31.0
+aiohttp>=3.9.0
+
+# Date and time handling
+python-dateutil>=2.8.2
+pytz>=2024.1
+
+# JSON handling
+jsonschema>=4.21.0
+
+# Audio processing (for voice input)
+sounddevice>=0.4.6
+SpeechRecognition>=3.10.0
+pyaudio>=0.2.14
+
+# Data visualization
+plotly>=5.18.0
+matplotlib>=3.8.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# File handling
+openpyxl>=3.1.2  # For Excel file support
+PyYAML>=6.0.1    # For YAML config files
+
+# Web components
+websockets>=12.0  # For real-time communication
+protobuf>=4.25.0  # For data serialization
+
+# Utilities
+tqdm>=4.66.0     # For progress bars
+colorama>=0.4.6  # For colored terminal output
