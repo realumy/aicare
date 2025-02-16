@@ -142,4 +142,4 @@ if st.button("Save Entry"):
         st.error("Please provide symptoms before saving your entry")
 
 st.write("**Réponse de l'API :**")
-st.text_area("Récap Docteur", str(generate_summary_and_questions(symptoms)), height=200)
+st.text_area("Récap Docteur", str(generate_summary_and_questions(st.session_state.get("voice_symptoms", ""))), height=200)
