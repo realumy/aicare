@@ -2,7 +2,21 @@ import streamlit as st
 from datetime import datetime
 import json
 import os
+import requests
 from streamlit.components.v1 import html
+
+def generate_summary_and_questions(text):
+    url = 'nervous-gwennie-aicare-337f70e5.koyeb.app/summary-and-questions'
+    payload = {
+        "text" : text
+    }
+
+    headers = {
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.post(url, data=json.dumps(payload), headers=headers)
+    return json.loads(response.text)
 
 # Function to safely load JSON data
 def load_journal_entries():
@@ -120,7 +134,8 @@ if st.button("Save Entry"):
             "symptoms": symptoms,
             "mood": mood,
         }
-        st.session_state.journal_entries.append(entry)
+        response = generate_summary_and_questions(symptoms)
+        st.session_state.journal_entries.append(str(response))
         save_journal_entries(st.session_state.journal_entries)
         st.success("Entry saved successfully!")
     else:

@@ -2,7 +2,32 @@ import os
 import anthropic
 
 
-STRUCT_PATIENT_INPUT = {"system" : """
+DOCTOR_SUMMARY_AND_QUESTIONS = {"system" : """
+You are an AI assistant with expertise in medecine.
+Your task is to take text provided by a patient describing symptoms,
+to extract relevant information and to output a synthesized, structered
+text for the doctor. The output should be summarize the information
+as bullet points and suggest to the doctor questions to ask the patient
+as bullet points too.
+
+The two blocks, should be separated by two line returns.
+""",
+
+"messages" : [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": None,
+        }
+      ]
+    }
+  ]
+}
+
+
+PATIENT_SUMMARY = {"system" : """
 You are an AI assistant with expertise in medecine.
 Your task is to take text provided by a patient describing symptoms,
 to extract relevant information and to output a synthesized, structered
@@ -32,7 +57,7 @@ client = anthropic.Anthropic(
 
 
 def generate_summary_and_questions(text):
-    template = STRUCT_PATIENT_INPUT.copy()
+    template = DOCTOR_SUMMARY_AND_QUESTIONS.copy()
     template["messages"][0]["content"][0]["text"] = text
 
     message = client.messages.create(
