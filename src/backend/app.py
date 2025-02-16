@@ -47,7 +47,7 @@ async def send_text(data: TextData):
 @app.post("/reset")
 async def reset():
     try:
-        _reset_patient_data(data)
+        _reset_patient_data()
         # Process text data (for now, just echoing the text)
         return JSONResponse(content={"status": "OK"}, status_code=200)
 
@@ -56,21 +56,21 @@ async def reset():
 
 
 
-@app.get("/summary-and-questions")
+@app.post("/summary-and-questions")
 async def get_summary_and_question(data: TextData):
-
     try:
-        _dump_patient_data(data)
-        patient_data = _load_patient_data()
-       
+        # Assuming _dump_patient_data and _load_patient_data are defined elsewhere
+        _dump_patient_data(data)  # Save or process the data
+        patient_data = _load_patient_data()  # Load the processed patient data
+
+        # Assuming generate_summary_and_questions is defined elsewhere
         summary, questions = generate_summary_and_questions(patient_data)
-        response = {"summary" : summary, "questions" : questions}
+        response = {"summary": summary, "questions": questions}
 
         return JSONResponse(content=response, status_code=200)
 
     except Exception as e:
         return JSONResponse(content={"message": str(e)}, status_code=400)
-
 
 
 
