@@ -2,7 +2,7 @@
 FROM python:3.11-slim
 
 # Install system dependencies including PortAudio dev
-RUN apt-get update && apt-get install -y --no-install-recommends && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends libpq-dev gcc && rm -rf /var/lib/apt/lists/*
 
 # Copy and install Python dependencies
 COPY requirements.txt .
