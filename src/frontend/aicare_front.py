@@ -141,14 +141,5 @@ if st.button("Save Entry"):
     else:
         st.error("Please provide symptoms before saving your entry")
 
-# Display previous entries
-st.subheader("Previous Entries")
-for entry in reversed(st.session_state.journal_entries):
-    with st.expander(f"{entry.get('user_name', 'Unknown')} - {entry.get('timestamp', '')[:10]}"):
-        st.write(f"**Condition:** {entry.get('condition', 'N/A')}")
-        st.write(f"**Temperature:** {entry.get('temperature', 'N/A')}°F")
-        st.write(f"**Pain Level:** {entry.get('pain_level', 'N/A')}/10")
-        st.write(f"**Mood:** {entry.get('mood', 'N/A')}")
-        st.write("**Symptoms:**")
-        st.write(entry.get('symptoms', 'No symptoms recorded'))
-        st.write(f"*Recorded on: {entry.get('timestamp', 'Unknown')}*")
+st.write("**Réponse de l'API :**")
+st.text_area("Récap Docteur", str(generate_summary_and_questions(symptoms)), height=200)
