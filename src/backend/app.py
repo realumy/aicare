@@ -12,7 +12,7 @@ from sqlalchemy import URL, create_engine, Column, Integer, String, Text, or_
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 
-from prompts import generate_summary_and_questions  # Keep your original import
+from prompts import generate_summary_and_questions 
 
 # Database Configuration
 connection_string = URL.create(
@@ -225,7 +225,7 @@ async def reset():
         return JSONResponse(content={"message": str(e)}, status_code=400)
 
 
-@app.get("/summary-and-questions")
+@app.post("/summary-and-questions")
 async def get_summary_and_question(data: TextData):
     try:
         _dump_patient_data(data)

@@ -6,7 +6,7 @@ import requests
 from streamlit.components.v1 import html
 
 def generate_summary_and_questions(text):
-    url = 'nervous-gwennie-aicare-337f70e5.koyeb.app/summary-and-questions'
+    url = 'https://nervous-gwennie-aicare-337f70e5.koyeb.app/summary-and-questions'
     payload = {
         "text" : text
     }
