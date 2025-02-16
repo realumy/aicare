@@ -1,20 +1,28 @@
+import json
+import os
+import xml.etree.ElementTree as ET
+from datetime import datetime
+from typing import List, Optional, Dict
+
+from anthropic import Anthropic
 from fastapi import FastAPI, File, UploadFile, Depends, HTTPException
 from fastapi.responses import JSONResponse, HTMLResponse
 from pydantic import BaseModel
-from sqlalchemy import create_engine, Column, Integer, String, Text, or_
+from sqlalchemy import URL, create_engine, Column, Integer, String, Text, or_
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
-from anthropic import Anthropic
-import xml.etree.ElementTree as ET
-from typing import List, Optional, Dict
-import json
-import os
-from datetime import datetime
+
 from prompts import generate_summary_and_questions  # Keep your original import
 
 # Database Configuration
-SQLALCHEMY_DATABASE_URL = "sqlite:///./medical_qa.db"
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+connection_string = URL.create(
+    'postgresql',
+    username='koyeb-adm',
+    password='npg_oiHQeqU1ZAu4',
+    host='ep-old-band-a2eayo15.eu-central-1.pg.koyeb.app',
+    database='koyebdb',
+)
+engine = create_engine(connection_string)
 SessionLocal = sessionmaker(autocommit=False, bind=engine)
 Base = declarative_base()
 
@@ -59,9 +67,11 @@ def _reset_patient_data():
     with open("patient.db", "w") as fp:
         return fp.write("")
 
+
 class MCPContext(BaseModel):
     relevant_qa: List[Dict]
     patient_history: str
+
 
 # XML Processing
 class XMLProcessor:
