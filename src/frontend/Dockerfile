@@ -10,11 +10,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 # Copy and install Python dependencies
-COPY requirements.txt .
+COPY ../backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of your application code
-COPY . .
+COPY .. .
 
 # Koyeb listens on port 3000 by default, so expose 3000
 EXPOSE 3000
