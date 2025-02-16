@@ -1,8 +1,9 @@
 # Use an official Python 3.11 (or any other version) base image
 FROM python:3.11-slim
 
-# Install system dependencies including PortAudio dev
+# 1. Install packages needed for PyAudio (PortAudio dev and gcc/build tools).
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
     portaudio19-dev \
     && rm -rf /var/lib/apt/lists/*
 
