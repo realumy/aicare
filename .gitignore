@@ -1,0 +1,76 @@
+# Core dependencies
+streamlit>=1.32.0
+
+numpy>=1.26.0
+
+# API and HTTP
+requests>=2.31.0
+aiohttp>=3.9.0
+
+# Date and time handling
+python-dateutil>=2.8.2
+pytz>=2024.1
+
+# JSON handling
+jsonschema>=4.21.0
+
+# Audio processing (for voice input)
+sounddevice>=0.4.6
+SpeechRecognition>=3.10.0
+pyaudio>=0.2.14
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Logs
+*.log
+logs/
+*.sqlite3
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Virtual Environment
+# venv/  # Commented out to allow including virtual environment
+# env/   # Commented out to allow including virtual environment
+# .env/  # Commented out to allow including virtual environment
+# .venv/ # Commented out to allow including virtual environment
