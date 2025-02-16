@@ -17,8 +17,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY .. .
 
 # Koyeb listens on port 3000 by default, so expose 3000
-EXPOSE 3000
+EXPOSE 8000
 
 # Start FastAPI with uvicorn on port 3000
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "3000"]
+CMD ["streamlit", "run", "aicare_front.py"]
 
