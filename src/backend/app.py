@@ -1,7 +1,6 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse, HTMLResponse
 from pydantic import BaseModel
-import shutil
 from prompts import generate_summary_and_questions
 
 # Initialize FastAPI app
