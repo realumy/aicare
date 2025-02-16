@@ -1,5 +1,5 @@
 from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, HTMLResponse
 from pydantic import BaseModel
 import shutil
 
@@ -9,6 +9,12 @@ app = FastAPI()
 # Define a Pydantic model for the text input
 class TextData(BaseModel):
     text: str
+
+
+@app.get("/", response_class=HTMLResponse)
+async def index():
+    return "<h2>It works!</h2>"
+
 
 # Endpoint to accept audio data
 @app.post("/upload-audio")
@@ -21,6 +27,7 @@ async def upload_audio(file: UploadFile = File(...)):
         return JSONResponse(content={"message": f"Audio file {file.filename} uploaded successfully!"}, status_code=200)
     except Exception as e:
         return JSONResponse(content={"message": str(e)}, status_code=400)
+
 
 # Endpoint to accept text data
 @app.post("/send-text")
